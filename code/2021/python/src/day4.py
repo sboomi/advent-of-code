@@ -144,6 +144,27 @@ def find_winner(numbers_to_draw: List[int], bingo_boards: List[BingoBoard]) -> T
     return number, bingo_board
 
 
+def find_last_winner(numbers_to_draw: List[int], bingo_boards: List[BingoBoard]) -> Tuple[int, BingoBoard]:
+    current_number = numbers_to_draw[0]
+    mark_for_deletion = []
+
+    for idx, board in enumerate(bingo_boards):
+        board.check_number(current_number)
+        board.check_if_winning()
+        if board.winning_board:
+            mark_for_deletion.append(idx)
+
+    if len(bingo_boards) > 1:
+        remaining_boards = [board for idx, board in enumerate(bingo_boards) if idx not in mark_for_deletion]
+    else:
+        remaining_boards = bingo_boards[:]
+
+    if len(remaining_boards) == 1 and remaining_boards[0].winning_board:
+        return current_number, remaining_boards[0]
+
+    return find_last_winner(numbers_to_draw[1:], remaining_boards)
+
+
 def day4():
     print("--- Day 4: Giant Squid ---")
 
@@ -156,6 +177,15 @@ def day4():
     print(win_board)
     unmarked_sum = win_board.get_unmarked_numbers_sum()
     print(f"The total unmarked sum was {unmarked_sum} / FINAL SCORE = {win_number * unmarked_sum}")
+
+    print("PART 2: Last Board Standing")
+    last_number, last_board = find_last_winner(numbers_to_draw, bingo_boards)
+    print(f"The last number was {last_number}")
+    print(last_board)
+    unmarked_last_sum = last_board.get_unmarked_numbers_sum()
+    print(
+        f"The total unmarked sum for the last board was {unmarked_last_sum} / FINAL SCORE = {last_number * unmarked_last_sum}"
+    )
 
 
 if __name__ == "__main__":
