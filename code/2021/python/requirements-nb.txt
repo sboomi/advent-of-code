@@ -1,0 +1,8 @@
+#base requirements
+-r requirements.txt
+
+#nb requirements
+jupyterlab
+notebook
+numpy
+matplotlib

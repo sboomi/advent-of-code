@@ -5,4 +5,3 @@
 pytest
 typer[all]
 coloredlogs
-jupyterlab

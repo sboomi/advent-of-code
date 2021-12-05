@@ -111,7 +111,7 @@ def load_data() -> Tuple[List[int], List[BingoBoard]]:
     Returns
     -------
     Tuple[List[int], List[BingoBoard]]
-        [description]
+        List of drawn numbers and bingo boards
     """
     day_four_file = DATA_DIR / "day4"
     bingo_boards = bingo_board = []
