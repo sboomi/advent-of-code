@@ -7,10 +7,10 @@ class BingoBoard:
     BINGO_COLS = 5
 
     def __init__(self, bingo_list):
-        if len(bingo_list) != 25:
+        if len(bingo_list) != (self.BINGO_ROWS * self.BINGO_COLS):
             raise AttributeError(f"Bingo list's length must be {self.BINGO_COLS * self.BINGO_ROWS}")
         self.bingo_list = bingo_list
-        self.checked = [False] * (self.BINGO_ROWS * self.BINGO_COLS)
+        self.checked = [False for _ in range(self.BINGO_ROWS * self.BINGO_COLS)]
         self.winning_board = False
 
     @classmethod

@@ -79,6 +79,24 @@ def abs_incl_range(start: int, stop: int) -> range:
 def tracing_diagram(
     start_points: List[Tuple[int, int]], end_points: List[Tuple[int, int]], max_x: int, max_y: int
 ) -> List[List[int]]:
+    """[summary]
+
+    Parameters
+    ----------
+    start_points : List[Tuple[int, int]]
+        [description]
+    end_points : List[Tuple[int, int]]
+        [description]
+    max_x : int
+        [description]
+    max_y : int
+        [description]
+
+    Returns
+    -------
+    List[List[int]]
+        [description]
+    """
 
     diagram = [[0 for _ in range(max_x + 1)] for _ in range(max_y + 1)]
 
@@ -100,6 +118,18 @@ def tracing_diagram(
 
 
 def count_overlaps(diagram: List[List[int]]) -> int:
+    """[summary]
+
+    Parameters
+    ----------
+    diagram : List[List[int]]
+        [description]
+
+    Returns
+    -------
+    int
+        [description]
+    """
     count_overlap = 0
     for diagram_row in diagram:
         for el in diagram_row:
