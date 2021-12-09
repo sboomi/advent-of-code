@@ -13,6 +13,13 @@ def find_center_range(crab_position: List[int]) -> Tuple[int, int]:
     return midway, min(crab_position) + midway
 
 
+def total_sum(n: int) -> int:
+    if n == 0:
+        return n
+    else:
+        return n + total_sum(n - 1)
+
+
 def crab_spaceship_spending(x_position: int, dest: int, mode: str) -> int:
     if mode == "basic":
         return abs(x_position - dest)
