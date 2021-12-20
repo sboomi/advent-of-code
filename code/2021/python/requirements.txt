@@ -3,5 +3,6 @@
 
 # external requirements
 pytest
+pytest-xdist
 typer[all]
 coloredlogs

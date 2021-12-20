@@ -136,11 +136,25 @@ def count_flashes(n_steps: int, octo_grid: List[List[int]]) -> int:
     return n_flashes
 
 
+def find_synchro_step(octo_grid: List[List[int]]) -> int:
+    step = 0
+
+    new_octo_grid = [[energy_lv for energy_lv in line] for line in octo_grid]
+
+    while not all([energy_lv == 0 for octo_row in new_octo_grid for energy_lv in octo_row]):
+        new_octo_grid, _ = update_octo_grid(new_octo_grid)
+        step += 1
+
+    return step
+
+
 def day11():
     print("--- Day 11: Dumbo Octopus ---")
     octopi_energy_lv = load_data()
     octopi_flashes_100 = count_flashes(100, octopi_energy_lv)
     print("N° of flashes after 100 steps:", octopi_flashes_100)
+    first_synch_step = find_synchro_step(octopi_energy_lv)
+    print("Step at which octopi shine at the same time:", first_synch_step)
 
 
 if __name__ == "__main__":
