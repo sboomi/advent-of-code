@@ -8,7 +8,7 @@ def load_data():
 
 
 def day15():
-    print()
+    print("--- Day 15: Chiton ---")
     data = load_data()
     print(data)
 

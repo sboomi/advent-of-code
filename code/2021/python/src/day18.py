@@ -2,13 +2,13 @@ from src import DATA_DIR
 
 
 def load_data():
-    day_eightteen_file = DATA_DIR / "day18"
-    with open(day_eightteen_file, "r") as f:
-        return f.read()
+    day_eighteen_file = DATA_DIR / "day18"
+    with open(day_eighteen_file, "r") as f:
+        return [eval(line) for line in f.readlines()]
 
 
 def day18():
-    print()
+    print("--- Day 18: Snailfish ---")
     data = load_data()
     print(data)
 

@@ -8,7 +8,7 @@ def load_data():
 
 
 def day14():
-    print()
+    print("--- Day 14: Extended Polymerization ---")
     data = load_data()
     print(data)
 
