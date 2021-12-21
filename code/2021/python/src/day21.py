@@ -8,7 +8,7 @@ def load_data():
 
 
 def day21():
-    print()
+    print("--- Day 21: Dirac Dice ---")
     data = load_data()
     print(data)
 
