@@ -1,4 +1,4 @@
-# AoC 2020: Python Edition
+# AoC 2021: Python Edition
 
 Install requirements for this directory with `pip install -r requirements.txt`
 
