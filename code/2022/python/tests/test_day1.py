@@ -36,7 +36,7 @@ def test_calorie_counting_part_one(text_file):
     assert expected_result == actual_result
 
 
-def test_caloire_counting_part_two(text_file):
+def test_calorie_counting_part_two(text_file):
     expected_result = 45000
     actual_result = CalorieCounting.top_three_elves(text_file)
 

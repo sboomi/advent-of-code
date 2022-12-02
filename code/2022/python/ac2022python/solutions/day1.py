@@ -1,6 +1,9 @@
 """Day 1: Calorie Counting """
-from ac2022python.solutions import DATA_PATH
 from pathlib import Path
+
+from rich import print
+
+from ac2022python.solutions import DATA_PATH
 
 PUZZLE_INPUT = Path(DATA_PATH / "day1")
 

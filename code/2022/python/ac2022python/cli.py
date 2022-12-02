@@ -48,7 +48,8 @@ def test(
     Launches suite tests against a day or every day at once
     """
     if all_tests:
-        pytest.main()
+        typer.echo("Running full test suite")
+        pytest.main(["-vv"])
 
     elif day:
         if not (1 <= day <= 25):
