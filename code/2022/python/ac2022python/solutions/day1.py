@@ -25,15 +25,12 @@ class CalorieCounting:
         """
         current_elf, heaviest_elf = 0, 0
         with open(calories, "r") as f:
-            while f:
-                line = f.readline()
+            for line in f:
                 if line.strip().isdigit():
                     current_elf += int(line.strip())
                 else:
                     heaviest_elf = max(current_elf, heaviest_elf)
                     current_elf = 0
-                if line == "":
-                    break
         return heaviest_elf
 
     @staticmethod

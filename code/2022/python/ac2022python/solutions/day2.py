@@ -64,24 +64,32 @@ class RockPaperScissors:
 
     @staticmethod
     def get_total_score(strategy_guide: Path, part_two: bool = False) -> int:
+        """Reads the strategy guide and computes the score for the player
+
+        Parameters
+        ----------
+        strategy_guide : Path
+            The sheet containing the strategy guide for a rock-paper-scissors game for both player and opponent
+        part_two : bool, optional
+            Enables part 2 of the algorithm, by default False
+
+        Returns
+        -------
+        int
+            Total score from the player
+        """
         total_score = 0
         with open(strategy_guide, "r") as f:
-            while f:
-                line = f.readline()
-                if len(line.strip()) >= 1:
-                    opponent_choice, player_choice = line.strip().split()
-                    if part_two:
-                        total_score += (
-                            RockPaperScissors.get_round_score_from_plan_strategy(
-                                opponent_choice, player_choice
-                            )
-                        )
-                    else:
-                        total_score += RockPaperScissors.get_round_score(
-                            opponent_choice, player_choice
-                        )
-                if line.strip() == "":
-                    break
+            for line in f:
+                opponent_choice, player_choice = line.strip().split()
+                if part_two:
+                    total_score += RockPaperScissors.get_round_score_from_plan_strategy(
+                        opponent_choice, player_choice
+                    )
+                else:
+                    total_score += RockPaperScissors.get_round_score(
+                        opponent_choice, player_choice
+                    )
         return total_score
 
     @staticmethod
