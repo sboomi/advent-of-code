@@ -40,3 +40,5 @@ def test_best_bag_config(text_file):
     ]
 
     assert act_best_bags == exp_best_bags
+    assert [bag.product() for bag in act_best_bags] == [48, 12, 1560, 630, 36]
+    assert sum([bag.product() for bag in act_best_bags]) == 2286

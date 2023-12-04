@@ -86,7 +86,7 @@ def get_calibration_values_with_letters(puzzle_input: list[str]) -> list[int]:
 def main():
     # read data
     # solve puzzle
-    puzzle_input = get_data()
+    puzzle_input = read_data()
     calibrations = get_calibration_values(puzzle_input)
     print("The sum of all calibration values is", sum(calibrations))
     print("PART 2")

@@ -32,6 +32,9 @@ class BagCubes:
             and self.blue == __value.blue
         )
 
+    def product(self) -> int:
+        return self.green * self.blue * self.red
+
 
 @dataclass
 class Game:
@@ -46,9 +49,9 @@ class Game:
 
         for bag in self.bag_cubes[1:]:
             best_bag = BagCubes(
-                red=best_bag.red if best_bag.red <= bag.red else bag.red,
-                blue=best_bag.blue if best_bag.blue <= bag.blue else bag.blue,
-                green=best_bag.green if best_bag.green <= bag.green else bag.green,
+                red=best_bag.red if best_bag.red >= bag.red else bag.red,
+                blue=best_bag.blue if best_bag.blue >= bag.blue else bag.blue,
+                green=best_bag.green if best_bag.green >= bag.green else bag.green,
             )
 
         return best_bag
@@ -81,11 +84,19 @@ def possible_games(games: list[Game]) -> list[int]:
     return [game._id for game in games if game.is_game_config_valid(game_conf)]
 
 
+def fewest_games(games: list[Game]) -> int:
+    best_bags = [game.best_bag_config() for game in games]
+    return sum([bag.product() for bag in best_bags])
+
+
 def main():
     games = get_games()
     pos_games = possible_games(games)
 
     print(f"Number of possible games: {sum(pos_games)}")
+
+    few_games = fewest_games(games)
+    print(f"The sum of power of these sets is {few_games}")
 
 
 if __name__ == "__main__":
