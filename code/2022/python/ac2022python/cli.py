@@ -43,13 +43,20 @@ def test(
         None, help="Day of the month (between 1 and 25)"
     ),
     all_tests: bool = typer.Option(False, "--all", help="Runs every test at once"),
+    with_output: bool = typer.Option(False, "--out", help="Prints outputs if needed"),
+    debug: bool = typer.Option(False, "--debug", help="Debugs tests"),
 ):
     """
     Launches suite tests against a day or every day at once
     """
+    output_params = ["-s"] if with_output else []
+    debug_params = ["-x", "--pdb"] if debug else []
+
+    supp_params = output_params + debug_params
+
     if all_tests:
         typer.echo("Running full test suite")
-        pytest.main(["-vv"])
+        pytest.main(["-vv"] + supp_params)
 
     elif day:
         if not (1 <= day <= 25):
@@ -57,7 +64,7 @@ def test(
             raise typer.Abort()
 
         typer.echo(f"Launching solution for day {day}")
-        pytest.main([f"tests/test_day{day}.py"])
+        pytest.main([f"tests/test_day{day}.py"] + supp_params)
 
     else:
         typer.echo("Must pass at least a day (between 1 and 25)")
