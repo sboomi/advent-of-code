@@ -18,25 +18,21 @@ class Number:
             and self.position == __value.position
         )
 
-    def symbols(self, schematic: list[str]) -> set[str]:
+    def symbols(self, schematic: list[str]) -> list[str]:
         n_rows, n_cols = len(schematic), len(schematic[0])
-        return set(
-            [
-                schematic[pos_y][pos_x]
-                for pos_y in range(
-                    max(self.line - 1, 0), min(self.line + 2, n_rows - 1)
-                )
-                for pos_x in range(
-                    max(self.position[0] - 1, 0), min(self.position[1] + 2, n_cols - 1)
-                )
-                if (pos_y, pos_x)
-                not in [
-                    (self.line, d_pos)
-                    for d_pos in range(self.position[0], self.position[1] + 1)
-                ]
-                and schematic[pos_y][pos_x] != "."
+        return [
+            schematic[pos_y][pos_x]
+            for pos_y in range(max(self.line - 1, 0), min(self.line + 2, n_rows - 1))
+            for pos_x in range(
+                max(self.position[0] - 1, 0), min(self.position[1] + 2, n_cols - 1)
+            )
+            if (pos_y, pos_x)
+            not in [
+                (self.line, d_pos)
+                for d_pos in range(self.position[0], self.position[1] + 1)
             ]
-        )
+            and schematic[pos_y][pos_x] != "."
+        ]
 
     def is_part_number(self, schematic: list[str]) -> bool:
         return bool(self.symbols(schematic))
@@ -67,7 +63,15 @@ def register_numbers(engine_schematic: list[str]) -> list[Number]:
                         )
                     )
                     num_buffer = ""
-        num_buffer = ""
+        if num_buffer:
+            numbers.append(
+                Number(
+                    value=int(num_buffer),
+                    line=n_line,
+                    position=(pos_start, n_col - 1),
+                )
+            )
+        num_buffer, pos_start = "", 0
 
     return numbers
 

@@ -46,7 +46,7 @@ def test_register_numbers(text_file):
         Number(value=598, line=9, position=(5, 7)),
     ]
 
-    assert [number.symbols(engine_schematic) for number in act_numbers] == [
+    assert [set(number.symbols(engine_schematic)) for number in act_numbers] == [
         set("*"),
         set(),
         set("*"),
